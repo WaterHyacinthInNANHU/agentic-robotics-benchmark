@@ -1,0 +1,8 @@
+{
+  "metric": "success_rate",
+  "direction": "higher",
+  "value": null,
+  "full_at": 1.0,
+  "source": "pending pinned ALE validation for the v2 geometric replay",
+  "reference_commit": null
+}
