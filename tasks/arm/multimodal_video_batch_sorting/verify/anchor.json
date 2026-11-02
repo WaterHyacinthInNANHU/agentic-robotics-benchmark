@@ -1,0 +1,8 @@
+{
+  "metric": "success_rate",
+  "direction": "higher",
+  "value": 1.0,
+  "full_at": 1.0,
+  "source": "GitHub Actions pinned ALE validate run 41548409850",
+  "reference_commit": "b368c3a00aa5e2818ee013b20343bcbd63ecb181"
+}
