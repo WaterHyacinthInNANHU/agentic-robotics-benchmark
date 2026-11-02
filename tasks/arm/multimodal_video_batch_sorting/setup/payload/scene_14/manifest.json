@@ -1,0 +1,17 @@
+{
+  "scene_id": "scene_14",
+  "frames": [
+    "rgb_0.png",
+    "rgb_1.png",
+    "rgb_2.png"
+  ],
+  "depth_frames": [
+    "depth_0.png",
+    "depth_1.png",
+    "depth_2.png"
+  ],
+  "bins": [
+    "ready",
+    "reject"
+  ]
+}

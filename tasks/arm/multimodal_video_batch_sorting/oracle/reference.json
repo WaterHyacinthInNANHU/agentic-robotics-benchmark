@@ -1,0 +1,3082 @@
+{
+  "schema_version": 1,
+  "scenes": [
+    {
+      "scene_id": "scene_00",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "CP",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "HU",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "HU",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "HU",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "HU",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "FQ",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "PS",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "AX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "AX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "AX",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_01",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "LN",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "WY",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "JM",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "HU",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "HU",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "HU",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_02",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "FQ",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "WY",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_03",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "WY",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "QT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "DR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_04",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "PS",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "JM",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "FQ",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_05",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "FQ",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "ZR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_06",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "DR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_07",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "CP",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "DR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_08",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "EV",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "CP",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_09",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "QT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "ZR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_10",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "QT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "LN",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "ZR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_11",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "EV",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "WY",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "AX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "AX",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "AX",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "AX",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_12",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_13",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "JM",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "WY",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "ZR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_14",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "PS",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "LN",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_15",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "QT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "FQ",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_16",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "HU",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "HU",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "HU",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_17",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_18",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "AX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "AX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "AX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "AX",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "QT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "QT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "QT",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "QT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "WY",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "WY",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "WY",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "HU",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "HU",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "HU",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_19",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_20",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "HU",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "HU",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "HU",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "HU",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "EV",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "EV",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "EV",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "EV",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "JM",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "JM",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "JM",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_21",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "FQ",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "FQ",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "FQ",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "LN",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "BK",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "CP",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "ZR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "AX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "AX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "AX",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "AX",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_22",
+      "actions": [
+        {
+          "op": "clear_guard",
+          "label": "PS",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "LN",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "LN",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "LN",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        },
+        {
+          "op": "pick",
+          "label": "ZR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "ZR",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "ZR",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "AX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "AX",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "AX",
+          "bin": "reject",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "AX",
+          "bin": "reject"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_23",
+      "actions": [
+        {
+          "op": "pick",
+          "label": "PS",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "PS",
+          "bin": "ready",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "PS",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "CP",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "CP",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "CP",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "CP",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "NX",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "NX",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 180
+        },
+        {
+          "op": "place",
+          "label": "NX",
+          "bin": "reject",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "NX",
+          "bin": "reject"
+        },
+        {
+          "op": "clear_guard",
+          "label": "DR",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "DR",
+          "tool": "vacuum",
+          "grasp": "top",
+          "yaw_deg": 270
+        },
+        {
+          "op": "place",
+          "label": "DR",
+          "bin": "ready",
+          "tool": "vacuum"
+        },
+        {
+          "op": "verify",
+          "label": "DR",
+          "bin": "ready"
+        },
+        {
+          "op": "pick",
+          "label": "BK",
+          "tool": "parallel_jaw",
+          "grasp": "rim",
+          "yaw_deg": 0
+        },
+        {
+          "op": "place",
+          "label": "BK",
+          "bin": "ready",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "verify",
+          "label": "BK",
+          "bin": "ready"
+        },
+        {
+          "op": "clear_guard",
+          "label": "GT",
+          "tool": "parallel_jaw"
+        },
+        {
+          "op": "pick",
+          "label": "GT",
+          "tool": "three_finger",
+          "grasp": "body",
+          "yaw_deg": 90
+        },
+        {
+          "op": "place",
+          "label": "GT",
+          "bin": "reject",
+          "tool": "three_finger"
+        },
+        {
+          "op": "verify",
+          "label": "GT",
+          "bin": "reject"
+        }
+      ]
+    }
+  ]
+}

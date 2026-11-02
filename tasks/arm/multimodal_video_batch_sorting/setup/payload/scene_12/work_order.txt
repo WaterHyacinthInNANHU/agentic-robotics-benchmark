@@ -1,0 +1,1 @@
+Process every stamped unit whose peak_force_n is above 4.32 N. For each selected unit, vibration_rms at least 0.55 goes to REJECT; otherwise READY. The complete mission succeeds only after all selected units are safely sorted.

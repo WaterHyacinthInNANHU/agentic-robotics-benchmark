@@ -1,0 +1,2788 @@
+{
+  "scenes": [
+    {
+      "scene_id": "scene_00",
+      "parts": [
+        {
+          "label": "CP",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "HU",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "JM",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "CP",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "HU",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 5,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_01",
+      "parts": [
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "WY",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "AX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "WY",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 3,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_02",
+      "parts": [
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "WY",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "WY",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 1,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_03",
+      "parts": [
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "EV",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "DR",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 2,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 3,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "EV",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 6,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_04",
+      "parts": [
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 0,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_05",
+      "parts": [
+        {
+          "label": "AX",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 1,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 3,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 6,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_06",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "DR",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "DR",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 1,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 2,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 5,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_07",
+      "parts": [
+        {
+          "label": "FQ",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "EV",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "EV",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 1,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 3,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 5,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_08",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "LN",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "EV",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "DR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "LN",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "EV",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 2,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "DR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_09",
+      "parts": [
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 3,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 5,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_10",
+      "parts": [
+        {
+          "label": "QT",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "WY",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "QT",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_11",
+      "parts": [
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "AX",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "AX",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_12",
+      "parts": [
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "BK",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "GT",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_13",
+      "parts": [
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "WY",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 3,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_14",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "EV",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "CP",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "EV",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 4,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 6,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_15",
+      "parts": [
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "ZR",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "FQ",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "PS",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "FQ",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "PS",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_16",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "HU",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "LN",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "JM",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "HU",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 3,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 4,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_17",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "DR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "WY",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "WY",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 3,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "QT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 4,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "FQ",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 6,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_18",
+      "parts": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "WY",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "HU",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": true,
+          "position": 1,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "QT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "WY",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": false,
+          "position": 3,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 5,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "HU",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_19",
+      "parts": [
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 4
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 2,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": false,
+          "position": 4,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "FQ",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_20",
+      "parts": [
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 0,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 1,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 3,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 4,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "JM",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 6,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_21",
+      "parts": [
+        {
+          "label": "FQ",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "NX",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "FQ",
+          "kind": "gear",
+          "yaw": 180,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "LN",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 1,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "BK",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "CP",
+          "kind": "plate",
+          "yaw": 0,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "ZR",
+          "kind": "coupler",
+          "yaw": 180,
+          "guard": true,
+          "position": 5,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_22",
+      "parts": [
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 0
+        },
+        {
+          "label": "EV",
+          "kind": "coupler",
+          "yaw": 270,
+          "guard": false,
+          "position": 1
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 2
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 3
+        },
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "PS",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": true,
+          "position": 0,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "LN",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": false,
+          "position": 2,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 3,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "GT",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 4,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "ZR",
+          "kind": "plate",
+          "yaw": 90,
+          "guard": false,
+          "position": 5,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "AX",
+          "kind": "gear",
+          "yaw": 90,
+          "guard": true,
+          "position": 6,
+          "destination": "reject",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        }
+      ]
+    },
+    {
+      "scene_id": "scene_23",
+      "parts": [
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 1
+        },
+        {
+          "label": "HU",
+          "kind": "gear",
+          "yaw": 270,
+          "guard": true,
+          "position": 2
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3
+        },
+        {
+          "label": "DR",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 4
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 5
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 6
+        }
+      ],
+      "targets": [
+        {
+          "label": "PS",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": false,
+          "position": 0,
+          "destination": "ready",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "CP",
+          "kind": "coupler",
+          "yaw": 0,
+          "guard": true,
+          "position": 1,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        },
+        {
+          "label": "NX",
+          "kind": "plate",
+          "yaw": 180,
+          "guard": true,
+          "position": 3,
+          "destination": "reject",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "DR",
+          "kind": "plate",
+          "yaw": 270,
+          "guard": true,
+          "position": 4,
+          "destination": "ready",
+          "tool": "vacuum",
+          "grasp": "top"
+        },
+        {
+          "label": "BK",
+          "kind": "gear",
+          "yaw": 0,
+          "guard": false,
+          "position": 5,
+          "destination": "ready",
+          "tool": "parallel_jaw",
+          "grasp": "rim"
+        },
+        {
+          "label": "GT",
+          "kind": "coupler",
+          "yaw": 90,
+          "guard": true,
+          "position": 6,
+          "destination": "reject",
+          "tool": "three_finger",
+          "grasp": "body"
+        }
+      ]
+    }
+  ]
+}
