@@ -51,6 +51,11 @@ jobs:
           print("TASK_RESULT=" + json.dumps(summary), flush=True)
           Path("fetch_push_task_probe.json").write_text(json.dumps(summary, indent=2))
           PY
+      - name: Sweep contact offsets on two fresh seed ranges
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: python candidate_notes/simulator_task_probe/fetch_push_offset_sweep.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
