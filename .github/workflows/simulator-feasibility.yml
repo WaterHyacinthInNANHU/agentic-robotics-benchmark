@@ -156,11 +156,11 @@ jobs:
                   successes = 0
                   errors = []
                   for seed in range(10):
-                      env = gym.make("FetchSlide-v4", max_episode_steps=50)
+                      env = gym.make("FetchSlide-v4", max_episode_steps=80)
                       obs, _ = env.reset(seed=seed + 100)
                       phase = 0
                       strikes = 0
-                      for t in range(50):
+                      for t in range(80):
                           gripper = obs["observation"][:3]
                           puck = obs["achieved_goal"]
                           goal = obs["desired_goal"]
