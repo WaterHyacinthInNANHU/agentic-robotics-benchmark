@@ -1,6 +1,7 @@
 """Independent solver trial using the task's exact public observation and physics."""
 import argparse
 import json
+import os
 import queue
 import secrets
 import signal
@@ -66,7 +67,7 @@ def episode(submission, seed):
             pass
         if proc.poll() is None:
             try:
-                signal.killpg(proc.pid, signal.SIGKILL)
+                os.killpg(proc.pid, signal.SIGKILL)
             except ProcessLookupError:
                 pass
         proc.wait(timeout=10)
