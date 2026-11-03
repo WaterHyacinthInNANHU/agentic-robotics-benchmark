@@ -27,7 +27,7 @@ jobs:
           sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/oracle")
           from controller import action
           results = []
-          for height in (-0.005, 0.005, 0.015, 0.025, 0.035, 0.045):
+          for height in (0.055, 0.065, 0.075, 0.085, 0.095, 0.105):
               world = SquareNutEpisode(11, render=False)
               start_nut = world.raw["SquareNut_pos"].copy()
               snap = {}
