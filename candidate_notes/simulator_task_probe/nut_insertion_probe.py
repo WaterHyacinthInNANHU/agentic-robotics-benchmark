@@ -1,5 +1,6 @@
 """Probe physical square-nut insertion after an observation-only grasp policy."""
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -13,7 +14,7 @@ from controller import Controller, distance  # noqa: E402
 def run(seed, target_nut_z):
     world = NutCarryEpisode(seed, render=False)
     ctl = Controller()
-    phase = "carry"
+    phase = "grasp"
     phase_start = 0
     aligned = 0
     native_stable = 0
@@ -21,19 +22,30 @@ def run(seed, target_nut_z):
     obs = world.observe()
     try:
         for t in range(400):
-            nut, peg, eef = (obs[k] for k in ("nut_pos", "peg_pos", "eef_pos"))
+            nut, peg, eef, handle = (obs[k] for k in
+                                     ("nut_pos", "peg_pos", "eef_pos", "handle_pos"))
             xy = distance(nut[:2], peg[:2])
-            if phase == "carry":
+            handle_angle = math.atan2(handle[1] - nut[1], handle[0] - nut[0])
+            yaw_error = round(handle_angle / (math.pi / 2)) * (math.pi / 2) - handle_angle
+            if phase == "grasp":
                 action = ctl.act(t, obs)
-                aligned = aligned + 1 if ctl.phase == "carry" and xy < 0.012 and nut[2] > 1.03 else 0
-                if aligned >= 8:
+                if ctl.phase == "carry" and nut[2] > 1.03:
+                    phase, phase_start = "align", t
+            elif phase == "align":
+                target = [eef[0] + peg[0] - nut[0], eef[1] + peg[1] - nut[1],
+                          eef[2] + 1.08 - nut[2]]
+                action = ctl.command(obs, target, 1., ctl.desired_ori, speed=.55)
+                action[5] = max(-.35, min(.35, 1.2 * yaw_error))
+                aligned = aligned + 1 if xy < .005 and abs(yaw_error) < .08 else 0
+                if aligned >= 7:
                     phase, phase_start = "lower", t
             elif phase == "lower":
                 target = [eef[0] + peg[0] - nut[0], eef[1] + peg[1] - nut[1],
                           eef[2] + target_nut_z - nut[2]]
-                action = ctl.command(obs, target, 1., ctl.desired_ori, speed=.42)
-                action[2] = max(-.32, min(.32, action[2]))
-                if nut[2] < target_nut_z + .012 or t - phase_start > 72:
+                action = ctl.command(obs, target, 1., ctl.desired_ori, speed=.35)
+                action[2] = max(-.2, min(.2, action[2]))
+                action[5] = max(-.2, min(.2, .8 * yaw_error))
+                if nut[2] < target_nut_z + .015 or t - phase_start > 100:
                     phase, phase_start = "release", t
             elif phase == "release":
                 action = ctl.command(obs, list(eef), -1., ctl.desired_ori, speed=.35)
@@ -50,13 +62,14 @@ def run(seed, target_nut_z):
         nut, peg = obs["nut_pos"], obs["peg_pos"]
         return {"seed": seed, "target_nut_z": target_nut_z, "success": native_stable >= 10,
                 "ever_native": ever_native, "phase": phase, "steps": world.t,
-                "xy_error": distance(nut[:2], peg[:2]), "nut_z": nut[2]}
+                "xy_error": distance(nut[:2], peg[:2]), "nut_z": nut[2],
+                "yaw_error": yaw_error}
     finally:
         world.close()
 
 
 if __name__ == "__main__":
-    for z in (0.84, 0.86, 0.88):
+    for z in (0.83,):
         rows = [run(seed, z) for seed in range(11, 31)]
         print("NUT_INSERT_RESULT", json.dumps({
             "target_nut_z": z, "successes": sum(r["success"] for r in rows),
