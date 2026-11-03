@@ -63,7 +63,7 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
 
 if __name__ == "__main__":
     started = time.perf_counter()
-    for steps_per_goal in (160, 200, 240):
-        for first in (5000, 6000):
-            print(json.dumps(run(first, count=50, steps_per_goal=steps_per_goal)), flush=True)
+    for first in (5000, 6000):
+        print(json.dumps(run(first, count=50, steps_per_goal=200,
+                             lost_distance=float("inf"))), flush=True)
     print(f"elapsed_s={time.perf_counter() - started:.1f}", flush=True)
