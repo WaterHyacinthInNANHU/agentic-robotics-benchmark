@@ -27,6 +27,18 @@ jobs:
           cd vendor/ale
           VIRTUAL_ENV= uv run ale lint ../../tasks/arm/fetch_precision_retarget
           VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/fetch_precision_retarget --runs-dir /tmp/ale-runs-anchored 2>&1 | tee /tmp/validate-anchored.log
+      - name: Show raw validation metrics
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          paths = sorted(Path('/tmp/ale-runs-anchored').rglob('result.json'))
+          if not paths:
+              raise SystemExit('No ALE result.json found')
+          for path in paths:
+              data = json.loads(path.read_text())
+              print('RAW_ALE_RESULT', path, json.dumps(data.get('metrics', data), sort_keys=True)[:5000], flush=True)
+          PY
       - name: Domain lint
         run: |
           uv sync
