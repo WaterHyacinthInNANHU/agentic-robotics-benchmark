@@ -1,0 +1,95 @@
+name: Probe real YCB-V RGB-D subset
+
+on:
+  push:
+    branches: [research/ycbv-real-rgbd-probe]
+    paths: [.github/workflows/probe-ycbv-real.yml]
+
+permissions:
+  contents: write
+
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download official BOP YCB-V subset
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/ycbv
+          cd /tmp/ycbv
+          wget -q --show-progress https://huggingface.co/datasets/bop-benchmark/ycbv/resolve/main/ycbv_base.zip
+          wget -q --show-progress https://huggingface.co/datasets/bop-benchmark/ycbv/resolve/main/ycbv_test_bop19.zip
+          unzip -q ycbv_base.zip
+          unzip -q ycbv_test_bop19.zip
+          find . -name test_targets_bop19.json -o -name scene_camera.json | head -30
+      - name: Select and audit real frames
+        run: |
+          python3 -m pip install --quiet pillow
+          python3 - <<'PY'
+          import json, shutil
+          from pathlib import Path
+          from PIL import Image, ImageDraw, ImageFont
+
+          root = Path("/tmp/ycbv")
+          targets_path = next(root.rglob("test_targets_bop19.json"))
+          targets = json.loads(targets_path.read_text())
+          by_scene = {}
+          for row in targets:
+              by_scene.setdefault(int(row["scene_id"]), []).append(int(row["im_id"]))
+          chosen = []
+          for scene_id in sorted(by_scene):
+              ids = sorted(set(by_scene[scene_id]))
+              picks = [ids[0], ids[len(ids)//2], ids[-1]]
+              chosen.append((scene_id, picks))
+              if len(chosen) == 8:
+                  break
+
+          test_root = next(p for p in root.rglob("test") if p.is_dir() and (p / f"{chosen[0][0]:06d}").is_dir())
+          records, thumbs = [], []
+          for scene_id, image_ids in chosen:
+              folder = test_root / f"{scene_id:06d}"
+              cameras = json.loads((folder / "scene_camera.json").read_text())
+              truth = json.loads((folder / "scene_gt.json").read_text())
+              info = json.loads((folder / "scene_gt_info.json").read_text())
+              for image_id in image_ids:
+                  key = str(image_id)
+                  rgb = folder / "rgb" / f"{image_id:06d}.png"
+                  depth = folder / "depth" / f"{image_id:06d}.png"
+                  records.append({
+                      "scene_id": scene_id, "image_id": image_id,
+                      "rgb_entry": str(rgb.relative_to(root)),
+                      "depth_entry": str(depth.relative_to(root)),
+                      "camera": cameras[key], "ground_truth": truth[key], "ground_truth_info": info[key],
+                  })
+                  im = Image.open(rgb).convert("RGB")
+                  im.thumbnail((320, 240))
+                  canvas = Image.new("RGB", (320, 270), (30, 33, 38))
+                  canvas.paste(im, ((320-im.width)//2, 0))
+                  ImageDraw.Draw(canvas).text((8, 246), f"scene {scene_id:06d} / frame {image_id:06d}", fill="white")
+                  thumbs.append(canvas)
+
+          out = Path("probe/ycbv")
+          out.mkdir(parents=True, exist_ok=True)
+          (out / "selected.json").write_text(json.dumps({
+              "source": "BOP YCB-V test_bop19",
+              "license": "MIT",
+              "archive_sha256_expected": None,
+              "records": records,
+          }, indent=2) + "\n")
+          sheet = Image.new("RGB", (960, 270 * ((len(thumbs)+2)//3)), (25, 28, 32))
+          for i, im in enumerate(thumbs):
+              sheet.paste(im, ((i % 3) * 320, (i // 3) * 270))
+          sheet.save(out / "contact.jpg", quality=88, optimize=True)
+          print(f"selected {len(records)} frames from {len(chosen)} real scenes")
+          print(f"contact bytes={(out/'contact.jpg').stat().st_size}")
+          print(json.dumps([{"scene":s,"frames":f} for s,f in chosen]))
+          PY
+      - name: Publish probe output
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add probe/ycbv
+          git commit -m "Add real YCB-V probe output [probe output]"
+          git push
