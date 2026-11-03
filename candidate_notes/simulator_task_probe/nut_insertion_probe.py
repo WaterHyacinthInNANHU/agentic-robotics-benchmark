@@ -45,7 +45,7 @@ def run(seed, target_nut_z):
                 action = ctl.command(obs, target, 1., ctl.desired_ori, speed=.35)
                 action[2] = max(-.2, min(.2, action[2]))
                 action[5] = max(-.2, min(.2, .8 * yaw_error))
-                if nut[2] < target_nut_z + .015 or t - phase_start > 100:
+                if nut[2] < target_nut_z + .003 or t - phase_start > 80:
                     phase, phase_start = "release", t
             elif phase == "release":
                 action = ctl.command(obs, list(eef), -1., ctl.desired_ori, speed=.35)
@@ -55,14 +55,6 @@ def run(seed, target_nut_z):
                 action = ctl.command(obs, [eef[0], eef[1], 1.12], -1., ctl.desired_ori, speed=.5)
             obs, _ = world.step(action)
             native = bool(world.env._check_success())
-            if seed == 11 and t in (140, 180, 190, 200, 240, 250):
-                now_nut, now_peg = obs["nut_pos"], obs["peg_pos"]
-                print("NUT_INSERT_TRACE", json.dumps({
-                    "t": t, "phase": phase, "xy": distance(now_nut[:2], now_peg[:2]),
-                    "z": now_nut[2], "yaw_error": yaw_error, "action": action,
-                    "nut_quat": obs["nut_quat"], "eef_quat": obs["eef_quat"],
-                    "handle_dz": obs["handle_pos"][2] - now_nut[2],
-                    "native": native}), flush=True)
             ever_native |= native
             native_stable = native_stable + 1 if native else 0
             if native_stable >= 10:
@@ -77,10 +69,10 @@ def run(seed, target_nut_z):
 
 
 if __name__ == "__main__":
-    for z in (0.83,):
-        rows = [run(seed, z) for seed in (11,)]
+    for z in (0.96, 0.98, 1.0, 1.02):
+        rows = [run(seed, z) for seed in range(11, 31)]
         print("NUT_INSERT_RESULT", json.dumps({
             "target_nut_z": z, "successes": sum(r["success"] for r in rows),
             "ever_native": sum(r["ever_native"] for r in rows),
-            "failures": [r for r in rows if not r["success"]],
+            "failures": [r["seed"] for r in rows if not r["success"]],
         }, sort_keys=True), flush=True)
