@@ -151,7 +151,8 @@ jobs:
           gym.register_envs(gymnasium_robotics)
           def clipped(delta):
               return np.clip(np.asarray(delta) / 0.05, -1, 1)
-          for behind in (0.14, 0.20, 0.26):
+          best = [float("inf")] * 10
+          for behind in (0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30):
               for strike_steps in (20,):
                   successes = 0
                   errors = []
@@ -187,9 +188,11 @@ jobs:
                       if seed == 0 and behind == 0.08 and strike_steps == 10:
                           print("TRACE", phase, strikes, "eef", obs["observation"][:3], "puck", obs["achieved_goal"], "goal", obs["desired_goal"])
                       errors.append(float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"])))
+                      best[seed] = min(best[seed], errors[-1])
                       successes += errors[-1] < 0.05
                       env.close()
                   print("STRIKE", behind, strike_steps, successes, "mean_error", np.mean(errors), flush=True)
+          print("ENVELOPE", sum(e < 0.05 for e in best), best, flush=True)
           PY
       - uses: actions/upload-artifact@v4
         with:
