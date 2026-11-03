@@ -1,0 +1,60 @@
+name: Fetch precision push task smoke
+on:
+  push:
+    branches: [probe/simulator-task-feasibility]
+jobs:
+  reference:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/fetch_precision_push/image/requirements.txt
+      - name: Test full public observation and reference controller
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: |
+          python - <<'PY'
+          import base64, json, resource, sys, time
+          from pathlib import Path
+          sys.path.insert(0, "tasks/arm/fetch_precision_push/setup/payload")
+          from fetch_push_env import MAX_STEPS, PushEpisode
+          sys.path.insert(0, "tasks/arm/fetch_precision_push/oracle")
+          from controller import Policy
+          start = time.perf_counter()
+          rows = []
+          for seed in range(1000, 1040):
+              world = PushEpisode(seed, render=True)
+              policy = Policy()
+              first = world.observe()
+              if seed == 1000:
+                  Path("fetch_push_observation.png").write_bytes(base64.b64decode(first["rgb_png_base64"]))
+              for t in range(MAX_STEPS):
+                  world.step(policy.act(world.observe()))
+              rows.append({"seed":seed, **world.result()})
+              world.close()
+          summary = {
+              "episodes":len(rows),
+              "precision_successes":sum(x["success"] for x in rows),
+              "native_successes":sum(x["native_success"] for x in rows),
+              "mean_error_m":sum(x["error_m"] for x in rows)/len(rows),
+              "elapsed_s":time.perf_counter()-start,
+              "max_rss_mb":resource.getrusage(resource.RUSAGE_SELF).ru_maxrss/1024,
+              "rows":rows,
+          }
+          print("TASK_RESULT=" + json.dumps(summary), flush=True)
+          Path("fetch_push_task_probe.json").write_text(json.dumps(summary, indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fetch-push-task-probe
+          path: |
+            fetch_push_task_probe.json
+            fetch_push_observation.png
