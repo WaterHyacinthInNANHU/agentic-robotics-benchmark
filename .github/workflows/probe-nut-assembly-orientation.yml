@@ -1,0 +1,25 @@
+name: Probe native square-nut assembly
+on:
+  push:
+    branches: [probe/nut-assembly-orientation]
+permissions:
+  contents: read
+jobs:
+  assembly:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install robosuite task dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/robosuite_square_nut_assembly/image/requirements.txt
+      - name: Test native assembly after physical grasp
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: python candidate_notes/simulator_task_probe/nut_assembly_orientation_probe.py
