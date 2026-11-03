@@ -15,8 +15,9 @@ def clip(value):
     return max(-1.0, min(1.0, value))
 
 
-def move(eef, target, gripper):
-    return [clip(12 * (target[i] - eef[i])) for i in range(3)] + [0, 0, 0, gripper]
+def move(eef, target, gripper, limit=1.0):
+    return [max(-limit, min(limit, 12 * (target[i] - eef[i])))
+            for i in range(3)] + [0, 0, 0, gripper]
 
 
 class Policy:
@@ -29,14 +30,16 @@ class Policy:
         nut = obs["nut_pos"]
         handle = obs["handle_pos"]
         peg = obs["peg_pos"]
-        if nut[2] > 0.93 and t >= 75:
+        if self.carry and nut[2] < 0.92:
+            self.carry = False
+        if nut[2] > 0.95 and t % 100 >= 95:
             if not self.carry:
                 self.grasp_step = t
             self.carry = True
         if self.carry:
             target = [eef[0] + peg[0] - nut[0],
                       eef[1] + peg[1] - nut[1], 1.15]
-            return move(eef, target, 1)
+            return move(eef, target, 1, limit=0.35)
         attempt = min(t // 100, 2)
         local = t - attempt * 100
         rotate_sign = -1 if attempt == 0 else 1
@@ -71,7 +74,7 @@ def run(seed):
 
 if __name__ == "__main__":
     rows = []
-    for seed in range(100, 140):
+    for seed in range(140, 180):
         row = run(seed)
         rows.append(row)
         print("NUT_CARRY_SCENE", json.dumps(row, sort_keys=True), flush=True)
