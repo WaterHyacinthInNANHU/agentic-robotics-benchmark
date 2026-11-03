@@ -1,0 +1,45 @@
+name: Validate timed square-nut assembly
+on:
+  push:
+    branches: [task/robosuite-timed-square-nut-assembly-validation]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: astral-sh/setup-uv@v6
+      - name: Build ALE base image
+        working-directory: vendor/ale
+        run: images/build.sh container-ubuntu22
+      - name: Lint and measure null-anchor reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd vendor/ale
+          VIRTUAL_ENV= uv run ale lint ../../tasks/arm/robosuite_timed_square_nut_assembly
+          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/robosuite_timed_square_nut_assembly --runs-dir /tmp/ale-timed-nut-runs 2>&1 | tee /tmp/validate-timed-nut.log
+      - name: Print raw reference metrics
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          paths = sorted(Path('/tmp/ale-timed-nut-runs').rglob('result.json'))
+          if not paths:
+              raise SystemExit('No ALE result.json found')
+          for path in paths:
+              data = json.loads(path.read_text())
+              print('RAW_ALE_RESULT', path, json.dumps(data.get('metrics', data), sort_keys=True)[:5000], flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: timed-nut-anchor-measurement
+          path: |
+            /tmp/validate-timed-nut.log
+            /tmp/ale-timed-nut-runs
