@@ -55,6 +55,16 @@ def run(seed, target_nut_z):
                 action = ctl.command(obs, [eef[0], eef[1], 1.12], -1., ctl.desired_ori, speed=.5)
             obs, _ = world.step(action)
             native = bool(world.env._check_success())
+            if seed == 11 and t in (180, 190, 200):
+                contacts = []
+                for ci in range(world.env.sim.data.ncon):
+                    c = world.env.sim.data.contact[ci]
+                    a = world.env.sim.model.geom_id2name(c.geom1)
+                    b = world.env.sim.model.geom_id2name(c.geom2)
+                    if "nut" in str(a).lower() or "nut" in str(b).lower() or "peg" in str(a).lower() or "peg" in str(b).lower():
+                        contacts.append((a, b, float(c.dist)))
+                print("NUT_INSERT_CONTACT", json.dumps({"t": t, "contacts": contacts,
+                      "eef": obs["eef_pos"], "nut": obs["nut_pos"], "peg": obs["peg_pos"]}), flush=True)
             ever_native |= native
             native_stable = native_stable + 1 if native else 0
             if native_stable >= 10:
@@ -69,8 +79,8 @@ def run(seed, target_nut_z):
 
 
 if __name__ == "__main__":
-    for z in (0.96, 0.98, 1.0, 1.02):
-        rows = [run(seed, z) for seed in range(11, 31)]
+    for z in (0.83,):
+        rows = [run(seed, z) for seed in (11,)]
         print("NUT_INSERT_RESULT", json.dumps({
             "target_nut_z": z, "successes": sum(r["success"] for r in rows),
             "ever_native": sum(r["ever_native"] for r in rows),
