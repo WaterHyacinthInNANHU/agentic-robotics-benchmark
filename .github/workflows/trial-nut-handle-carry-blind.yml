@@ -22,6 +22,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libosmesa6-dev
           python -m pip install -r tasks/arm/robosuite_nut_handle_carry/image/requirements.txt
+      - name: Stage frozen submission at its declared path
+        run: |
+          mkdir -p /tmp/nut_handle_carry_blind_${{ matrix.agent }}/submission
+          cp candidate_notes/simulator_task_probe/nut_carry_blind_${{ matrix.agent }}/* /tmp/nut_handle_carry_blind_${{ matrix.agent }}/submission/
       - name: Evaluate frozen independent agent on 40 hidden scenes
         env:
           MUJOCO_GL: osmesa
