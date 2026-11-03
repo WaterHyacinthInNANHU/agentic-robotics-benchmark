@@ -19,7 +19,7 @@ jobs:
         env:
           MUJOCO_GL: osmesa
           PYOPENGL_PLATFORM: osmesa
-        run: python candidate_notes/simulator_task_probe/fetch_push_precision_sweep.py
+        run: python candidate_notes/simulator_task_probe/fetch_push_horizon_sweep.py
       - uses: actions/upload-artifact@v4
         if: always()
         with:
