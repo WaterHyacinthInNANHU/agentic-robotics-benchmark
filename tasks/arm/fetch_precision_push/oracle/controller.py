@@ -22,6 +22,8 @@ class Policy:
         dx, dy = goal[0] - cube[0], goal[1] - cube[1]
         gap = math.hypot(dx, dy)
         ux, uy = dx / max(gap, 1e-9), dy / max(gap, 1e-9)
+        if self.phase == 2 and math.dist(gripper[:2], cube[:2]) > 0.10:
+            self.phase = 0
         behind = [cube[0] - OFFSET * ux, cube[1] - OFFSET * uy, cube[2]]
         if self.phase == 0:
             target = [behind[0], behind[1], behind[2] + 0.10]
@@ -32,7 +34,7 @@ class Policy:
             if math.dist(gripper, target) < 0.015:
                 self.phase = 2
         else:
-            distance = min(0.05, gap * 0.45)
+            distance = min(0.05, gap * 0.45) if gap > 0.015 else 0.0
             target = [gripper[0] + ux * distance,
                       gripper[1] + uy * distance,
                       cube[2] + 0.005]
