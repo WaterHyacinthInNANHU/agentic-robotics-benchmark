@@ -4,7 +4,7 @@ Write a closed-loop controller for the stock Gymnasium Robotics `FetchPush-v4`
 MuJoCo environment. In one continuous physical scene, push the cube to two
 targets. You see target 1 at reset. Target 2 is revealed only after action 200;
 the cube and robot are **not** reset. You have 200 actions for each target.
-Both final positions must be within **3 mm** of the target active at the end
+Both final positions must be within **1.5 mm** of the target active at the end
 of its stage. The action rate is 25 Hz, so the full scene lasts 16 seconds
 of simulated time. The task uses the simulator's arm motion, contact, friction,
 and action limits.
@@ -38,7 +38,7 @@ action values to this range.
 
 Each stage is scored at its final physical state only, after actions 200
 and 400 respectively. The scene succeeds only if **both** stages satisfy
-the 3 mm tolerance. The second target is sampled from the simulator's goal
+the 1.5 mm tolerance. The second target is sampled from the simulator's goal
 distribution and must be at least 10 cm from the first target. A reply must
 arrive within 10 seconds; print `READY` within 40 seconds. A malformed
 action, crash, or deadline miss fails the scene. Repeated queries with the
