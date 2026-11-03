@@ -184,7 +184,7 @@ jobs:
                               target[2] += 0.05
                           act = np.r_[clipped(target-gripper), 0.0]
                           obs, rew, term, trunc, info = env.step(act)
-                      errors.append(float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"])))
+                      if seed == 0 and behind == 0.08 and strike_steps == 10:\n                          print("TRACE", phase, strikes, "eef", obs["observation"][:3], "puck", obs["achieved_goal"], "goal", obs["desired_goal"])\n                      errors.append(float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"])))
                       successes += errors[-1] < 0.05
                       env.close()
                   print("STRIKE", behind, strike_steps, successes, "mean_error", np.mean(errors), flush=True)
