@@ -1,5 +1,6 @@
 """Diagnose native robosuite NutAssemblySquare handle grasps."""
 import json
+import math
 import sys
 from pathlib import Path
 
@@ -21,6 +22,8 @@ def run(seed, yaw_steps, height_offset):
     try:
         first = world.observe()
         nut_start_z = first["nut_pos"][2]
+        handle_angle = math.atan2(first["handle_pos"][1] - first["nut_pos"][1],
+                                  first["handle_pos"][0] - first["nut_pos"][0])
         close_pose = None
         for t in range(125):
             obs = world.observe()
@@ -43,6 +46,7 @@ def run(seed, yaw_steps, height_offset):
         final = world.observe()
         return {"seed": seed, "yaw_steps": yaw_steps,
                 "height_offset": height_offset,
+                "handle_angle": handle_angle,
                 "lift_m": final["nut_pos"][2] - nut_start_z,
                 "eef_z": final["eef_pos"][2],
                 "nut_z": final["nut_pos"][2],
@@ -52,14 +56,16 @@ def run(seed, yaw_steps, height_offset):
 
 
 if __name__ == "__main__":
-    for yaw_steps in (-6, -3, 0, 3, 6):
-        for height_offset in (-0.005, 0.015, 0.035):
-            rows = [run(seed, yaw_steps, height_offset) for seed in (11, 22, 33)]
-            print("NUT_GRASP_PROBE", json.dumps({
-                "yaw_steps": yaw_steps, "height_offset": height_offset,
-                "grasped": sum(row["lift_m"] > 0.04 for row in rows),
-                "lift_m": [round(row["lift_m"], 4) for row in rows],
-                "close_quat": rows[0]["close_pose"]["quat"],
-                "close_eef": rows[0]["close_pose"]["eef"],
-                "close_handle": rows[0]["close_pose"]["handle"],
-            }, sort_keys=True), flush=True)
+    counts = {-6: 0, 0: 0, 6: 0}
+    for seed in range(11, 31):
+        choices = {}
+        angle = None
+        for yaw_steps in (-6, 0, 6):
+            row = run(seed, yaw_steps, -0.005)
+            choices[str(yaw_steps)] = round(row["lift_m"], 4)
+            counts[yaw_steps] += row["lift_m"] > 0.04
+            angle = row["handle_angle"]
+        print("NUT_GRASP_SEED", json.dumps({"seed": seed,
+              "handle_angle": round(angle, 3), "lift_m": choices},
+              sort_keys=True), flush=True)
+    print("NUT_GRASP_COUNTS", json.dumps(counts, sort_keys=True), flush=True)
