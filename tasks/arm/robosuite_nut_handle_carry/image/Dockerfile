@@ -7,7 +7,8 @@ ENV PATH=/opt/venv/bin:$PATH
 ENV MUJOCO_GL=osmesa
 ENV PYOPENGL_PLATFORM=osmesa
 COPY requirements.txt /tmp/requirements.txt
-RUN apt-get update && apt-get install -y --no-install-recommends libosmesa6 libgl1 libglfw3 \
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    build-essential linux-libc-dev libosmesa6 libgl1 libglfw3 \
     && rm -rf /var/lib/apt/lists/*
 RUN uv venv /opt/venv --python 3.12 \
     && uv pip install --python /opt/venv -r /tmp/requirements.txt \
