@@ -34,7 +34,7 @@ jobs:
               for t in range(200):
                   obs = world.observe()
                   if t in (0, 37, 64, 81, 105, 144, 164, 179, 199):
-                      snapshots.append({"t": t, "eef": obs["eef_pos"], "nut": obs["nut_pos"], "handle": obs["handle_pos"], "peg": obs["peg_pos"]})
+                      snapshots.append({"t": t, "eef": obs["eef_pos"], "nut": obs["nut_pos"], "handle": obs["handle_pos"], "peg": obs["peg_pos"], "gripper": obs["gripper_qpos"], "grasp": bool(world.env._check_grasp(gripper=world.env.robots[0].gripper, object_geoms=world.env.nuts[0].contact_geoms))})
                   _, done = world.step(action(t, obs))
                   if done:
                       break
