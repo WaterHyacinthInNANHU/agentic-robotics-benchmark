@@ -21,9 +21,10 @@ def move(eef, target, gripper, limit=1.0):
 
 
 class Policy:
-    def __init__(self):
+    def __init__(self, carry_limit=0.15):
         self.carry = False
         self.grasp_step = None
+        self.carry_limit = carry_limit
 
     def act(self, t, obs):
         eef = obs["eef_pos"]
@@ -39,7 +40,7 @@ class Policy:
         if self.carry:
             target = [eef[0] + peg[0] - nut[0],
                       eef[1] + peg[1] - nut[1], 1.15]
-            return move(eef, target, 1, limit=0.15)
+            return move(eef, target, 1, limit=self.carry_limit)
         attempt = min(t // 100, 2)
         local = t - attempt * 100
         rotate_sign = -1 if attempt == 0 else 1
@@ -54,10 +55,10 @@ class Policy:
         return move(eef, [eef[0], eef[1], 1.08], 1)
 
 
-def run(seed):
+def run(seed, carry_limit):
     world = SquareNutEpisode(seed, render=False)
     world.env.horizon = HORIZON
-    policy = Policy()
+    policy = Policy(carry_limit)
     try:
         for t in range(HORIZON):
             world.step(policy.act(t, world.observe()))
@@ -73,15 +74,14 @@ def run(seed):
 
 
 if __name__ == "__main__":
-    rows = []
-    for seed in range(180, 220):
-        row = run(seed)
-        rows.append(row)
-        print("NUT_CARRY_SCENE", json.dumps(row, sort_keys=True), flush=True)
-    print("NUT_CARRY_RESULT", json.dumps({
-        "count": len(rows), "successes": sum(row["success"] for row in rows),
-        "grasped": sum(row["grasp_step"] is not None for row in rows),
-        "grasp_attempts": {str(a): sum(row["grasp_step"] is not None and
-                                  a * 100 <= row["grasp_step"] < (a + 1) * 100
-                                  for row in rows) for a in range(3)},
-    }, sort_keys=True), flush=True)
+    for carry_limit in (0.25, 0.35):
+        rows = []
+        for seed in range(180, 220):
+            row = run(seed, carry_limit)
+            rows.append(row)
+        print("NUT_CARRY_RESULT", json.dumps({
+            "carry_limit": carry_limit, "count": len(rows),
+            "successes": sum(row["success"] for row in rows),
+            "grasped": sum(row["grasp_step"] is not None for row in rows),
+            "fail_seeds": [row["seed"] for row in rows if not row["success"]],
+        }, sort_keys=True), flush=True)
