@@ -1,0 +1,32 @@
+name: Evaluate frozen blind Fetch agents
+on:
+  push:
+    branches: [trial/fetch-precision-retarget-blind]
+permissions:
+  contents: read
+jobs:
+  blind-trial:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        trial: ["02", "03"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install native MuJoCo task dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/fetch_precision_retarget/image/requirements.txt
+      - name: Evaluate frozen blind coding agent
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: |
+          python candidate_notes/simulator_task_probe/evaluate_blind_fetch.py \
+            agent_trials/fetch_precision_retarget_blind_${{ matrix.trial }}/submission \
+            --episodes 40
