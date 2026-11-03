@@ -12,7 +12,7 @@ def scaled(delta):
 
 class Policy:
     def __init__(self):
-        self.phase = 0
+        self.phase = -1
         self.last_stage = 0
 
     def act(self, obs):
