@@ -20,11 +20,7 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
         env = gym.make("FetchPush-v4", max_episode_steps=2 * steps_per_goal)
         raw, _ = env.reset(seed=seed)
         first_goal = raw["desired_goal"].copy()
-        # Keep the second waypoint inside the simulator's own goal distribution.
-        for _ in range(100):
-            second_goal = env.unwrapped._sample_goal().copy()
-            if np.linalg.norm(second_goal[:2] - first_goal[:2]) > 0.10:
-                break
+        second_goal = raw["achieved_goal"].copy()
         errors = []
         for goal in (first_goal, second_goal):
             policy = Policy(lost_distance, 0.0)
@@ -32,7 +28,8 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
                 obs = {"state": raw["observation"].tolist(), "goal": goal.tolist()}
                 raw, _, _, _, _ = env.step(policy.act(obs))
             errors.append(float(np.linalg.norm(raw["achieved_goal"] - goal)))
-        rows.append({"seed": seed, "e1": errors[0], "e2": errors[1]})
+        rows.append({"seed": seed, "e1": errors[0], "e2": errors[1],
+                     "separation": float(np.linalg.norm(first_goal - second_goal))})
         env.close()
     return {"first": first, "count": count, "recovery": math.isfinite(lost_distance),
             "both_5mm": sum(r["e1"] < .005 and r["e2"] < .005 for r in rows),
@@ -40,6 +37,7 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
             "both_2mm": sum(r["e1"] < .002 and r["e2"] < .002 for r in rows),
             "stage1_3mm": sum(r["e1"] < .003 for r in rows),
             "stage2_3mm": sum(r["e2"] < .003 for r in rows),
+            "mean_separation_m": sum(r["separation"] for r in rows) / len(rows),
             "fails_3mm": [[r["seed"], round(r["e1"], 4), round(r["e2"], 4)]
                           for r in rows if r["e1"] >= .003 or r["e2"] >= .003]}
 
