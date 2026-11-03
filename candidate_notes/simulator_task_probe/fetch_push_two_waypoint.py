@@ -33,7 +33,10 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
         env = gym.make("FetchPush-v4", max_episode_steps=2 * steps_per_goal)
         raw, _ = env.reset(seed=seed)
         first_goal = raw["desired_goal"].copy()
-        second_goal = raw["achieved_goal"].copy()
+        for _ in range(100):
+            second_goal = env.unwrapped._sample_goal().copy()
+            if np.linalg.norm(second_goal[:2] - first_goal[:2]) > 0.10:
+                break
         errors = []
         for stage, goal in enumerate((first_goal, second_goal)):
             policy = WaypointPolicy(lost_distance, 0.0)
