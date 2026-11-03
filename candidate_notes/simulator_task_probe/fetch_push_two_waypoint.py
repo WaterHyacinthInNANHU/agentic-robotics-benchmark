@@ -11,7 +11,20 @@ import numpy as np
 
 gym.register_envs(gymnasium_robotics)
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from fetch_push_recovery_sweep import Policy  # noqa: E402
+from fetch_push_recovery_sweep import Policy, scaled  # noqa: E402
+
+
+class WaypointPolicy(Policy):
+    def act(self, obs):
+        if self.phase == -1:
+            gripper = obs["state"][:3]
+            cube = obs["state"][3:6]
+            target_height = cube[2] + 0.15
+            if abs(gripper[2] - target_height) < 0.015:
+                self.phase = 0
+            else:
+                return [0.0, 0.0, scaled(target_height - gripper[2]), 0.0]
+        return super().act(obs)
 
 
 def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
@@ -22,8 +35,10 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
         first_goal = raw["desired_goal"].copy()
         second_goal = raw["achieved_goal"].copy()
         errors = []
-        for goal in (first_goal, second_goal):
-            policy = Policy(lost_distance, 0.0)
+        for stage, goal in enumerate((first_goal, second_goal)):
+            policy = WaypointPolicy(lost_distance, 0.0)
+            if stage == 1:
+                policy.phase = -1
             for _ in range(steps_per_goal):
                 obs = {"state": raw["observation"].tolist(), "goal": goal.tolist()}
                 raw, _, _, _, _ = env.step(policy.act(obs))
