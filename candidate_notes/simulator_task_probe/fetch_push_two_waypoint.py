@@ -49,7 +49,8 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
         rows.append({"seed": seed, "e1": errors[0], "e2": errors[1],
                      "separation": float(np.linalg.norm(first_goal - second_goal))})
         env.close()
-    return {"first": first, "count": count, "recovery": math.isfinite(lost_distance),
+    return {"first": first, "count": count, "steps_per_goal": steps_per_goal,
+            "recovery": math.isfinite(lost_distance),
             "both_5mm": sum(r["e1"] < .005 and r["e2"] < .005 for r in rows),
             "both_3mm": sum(r["e1"] < .003 and r["e2"] < .003 for r in rows),
             "both_2mm": sum(r["e1"] < .002 and r["e2"] < .002 for r in rows),
@@ -62,7 +63,7 @@ def run(first, count=40, steps_per_goal=160, lost_distance=0.10):
 
 if __name__ == "__main__":
     started = time.perf_counter()
-    for lost_distance in (0.10, float("inf")):
-        for first in (3000, 4000):
-            print(json.dumps(run(first, lost_distance=lost_distance)), flush=True)
+    for steps_per_goal in (160, 200, 240):
+        for first in (5000, 6000):
+            print(json.dumps(run(first, count=50, steps_per_goal=steps_per_goal)), flush=True)
     print(f"elapsed_s={time.perf_counter() - started:.1f}", flush=True)
