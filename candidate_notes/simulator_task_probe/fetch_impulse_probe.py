@@ -78,7 +78,7 @@ def trial(seed, force, kind):
 
 
 def main():
-    for force in (0.0, 0.025, 0.05, 0.10):
+    for force in (1.0, 3.0, 6.0, 10.0, 20.0):
         for kind in ("reference", "agent02"):
             rows = [trial(seed, force, kind) for seed in range(9000, 9020)]
             print("IMPULSE_PROBE", json.dumps({
