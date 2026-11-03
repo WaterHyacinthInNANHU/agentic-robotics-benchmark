@@ -1,0 +1,25 @@
+name: Probe native nut insertion
+on:
+  push:
+    branches: [probe/nut-insertion]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install native robosuite dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/robosuite_nut_handle_carry/image/requirements.txt
+      - name: Probe physical insertion on matched scenes
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: python candidate_notes/simulator_task_probe/nut_insertion_probe.py
