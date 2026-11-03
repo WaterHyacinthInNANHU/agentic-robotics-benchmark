@@ -1,0 +1,32 @@
+name: Evaluate frozen 1.5 mm Fetch agents
+on:
+  push:
+    branches: [trial/fetch-retarget-1p5mm-blind]
+permissions:
+  contents: read
+jobs:
+  blind-trial:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        trial: ["01", "02"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install native MuJoCo task dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/fetch_precision_retarget/image/requirements.txt
+      - name: Evaluate frozen blind coding agent at 1.5 mm
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: |
+          python candidate_notes/simulator_task_probe/evaluate_blind_fetch.py \
+            agent_trials/fetch_retarget_1p5_blind_${{ matrix.trial }}/submission \
+            --episodes 40
