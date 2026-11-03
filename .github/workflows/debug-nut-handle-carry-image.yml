@@ -1,0 +1,14 @@
+name: Debug native nut image build
+on:
+  push:
+    branches: [task/robosuite-nut-handle-carry-validation]
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build task image with complete output
+        run: docker build --progress=plain tasks/arm/robosuite_nut_handle_carry/image
