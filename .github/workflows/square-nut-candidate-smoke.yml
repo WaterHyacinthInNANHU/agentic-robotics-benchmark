@@ -1,4 +1,4 @@
-name: Square nut candidate smoke
+name: Fetch push candidate probe
 on:
   push:
     branches: [probe/simulator-task-feasibility]
@@ -11,46 +11,59 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
-      - run: |
+      - name: Install MuJoCo and Gymnasium Robotics
+        run: |
           sudo apt-get update
           sudo apt-get install -y libosmesa6-dev
-          python -m pip install -r tasks/arm/robosuite_square_nut_assembly/image/requirements.txt
-      - name: Run actual MuJoCo reference candidate
+          python -m pip install mujoco==3.3.7 gymnasium-robotics==1.4.2 numpy==1.26.4
+      - name: Run 30 randomized FetchPush episodes
         env:
           MUJOCO_GL: osmesa
-          PYOPENGL_PLATFORM: osmesa
         run: |
           python - <<'PY'
-          import json, sys
-          sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/setup/payload")
-          from square_nut_env import SquareNutEpisode
-          sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/oracle")
-          from controller import action
-          results = []
-          for height in (0.055, 0.065, 0.075, 0.085, 0.095, 0.105):
-              world = SquareNutEpisode(11, render=False)
-              start_nut = world.raw["SquareNut_pos"].copy()
-              snap = {}
-              for t in range(106):
-                  obs = world.observe()
-                  a = action(t, obs)
-                  if 38 <= t < 65:
-                      a[2] = max(-1.0, min(1.0, 9 * (obs["handle_pos"][2] + height - obs["eef_pos"][2])))
-                  if t in (64, 81, 105):
-                      snap[t] = {
-                          "eef": obs["eef_pos"],
-                          "handle": obs["handle_pos"],
-                          "gripper": obs["gripper_qpos"],
-                          "grasp": bool(world.env._check_grasp(gripper=world.env.robots[0].gripper, object_geoms=world.env.nuts[0].contact_geoms)),
-                          "nut_lift": float(world.raw["SquareNut_pos"][2] - start_nut[2])
-                      }
-                  world.step(a)
-              results.append({"height":height,"snap":snap})
-              world.close()
-          print("GRASP_SWEEP=" + json.dumps(results))
+          import gymnasium as gym
+          import gymnasium_robotics
+          import numpy as np
+          gym.register_envs(gymnasium_robotics)
+          def clip(x): return np.clip(np.asarray(x) / .05, -1, 1)
+          for offset in (.035, .05, .065):
+              successes = 0
+              tight = 0
+              errors = []
+              phases = []
+              for seed in range(30):
+                  env = gym.make("FetchPush-v4", max_episode_steps=80)
+                  obs, _ = env.reset(seed=seed + 800)
+                  phase = 0
+                  for t in range(80):
+                      grip = obs["observation"][:3]
+                      obj = obs["achieved_goal"]
+                      goal = obs["desired_goal"]
+                      d = goal[:2] - obj[:2]
+                      gap = np.linalg.norm(d)
+                      unit = d / max(gap, 1e-9)
+                      behind = obj.copy()
+                      behind[:2] -= offset * unit
+                      if phase == 0:
+                          target = behind.copy()
+                          target[2] += .10
+                          if np.linalg.norm(grip-target) < .02: phase = 1
+                      elif phase == 1:
+                          target = behind.copy()
+                          target[2] += .005
+                          if np.linalg.norm(grip-target) < .015: phase = 2
+                      else:
+                          target = grip.copy()
+                          if gap > .015:
+                              target[:2] += unit * min(.05, gap*.45)
+                          target[2] = obj[2] + .005
+                      action = np.r_[clip(target-grip), 0.0]
+                      obs, _, _, _, _ = env.step(action)
+                  error = float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"]))
+                  successes += error < .05
+                  tight += error < .02
+                  errors.append(error)
+                  phases.append(phase)
+                  env.close()
+              print("PUSH", offset, "native", successes, "tight", tight, "mean_error", np.mean(errors), "phase2", phases.count(2), flush=True)
           PY
-      - uses: actions/upload-artifact@v4
-        if: always()
-        with:
-          name: square-nut-policy-probe
-          path: square_nut_policy_probe.json
