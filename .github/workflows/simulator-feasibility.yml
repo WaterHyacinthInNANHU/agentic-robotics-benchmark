@@ -152,7 +152,7 @@ jobs:
           def clipped(delta):
               return np.clip(np.asarray(delta) / 0.05, -1, 1)
           best = [float("inf")] * 10
-          for behind in (0.10, 0.12, 0.14, 0.16, 0.18, 0.20, 0.22, 0.24, 0.26, 0.28, 0.30):
+          for behind in ((d, side) for d in (0.18, 0.22, 0.26, 0.30, 0.34) for side in (-0.04, -0.02, 0.0, 0.02, 0.04)):
               for strike_steps in (20,):
                   successes = 0
                   errors = []
@@ -168,7 +168,8 @@ jobs:
                           direction = goal[:2] - puck[:2]
                           direction /= max(np.linalg.norm(direction), 1e-9)
                           target = puck.copy()
-                          target[:2] -= behind * direction
+                          target[:2] -= behind[0] * direction
+                          target[:2] += behind[1] * np.array([-direction[1], direction[0]])
                           if phase == 0:
                               target[2] += 0.11
                               if np.linalg.norm(gripper-target) < 0.018: phase = 1
@@ -185,7 +186,7 @@ jobs:
                               target[2] += 0.05
                           act = np.r_[clipped(target-gripper), 0.0]
                           obs, rew, term, trunc, info = env.step(act)
-                      if seed == 0 and behind == 0.08 and strike_steps == 10:
+                      if seed == 0 and behind == (0.26, 0.0) and strike_steps == 20:
                           print("TRACE", phase, strikes, "eef", obs["observation"][:3], "puck", obs["achieved_goal"], "goal", obs["desired_goal"])
                       errors.append(float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"])))
                       best[seed] = min(best[seed], errors[-1])
