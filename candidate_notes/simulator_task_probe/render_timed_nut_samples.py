@@ -8,10 +8,9 @@ from pathlib import Path
 from PIL import Image, ImageDraw
 
 ROOT = Path(__file__).resolve().parents[2]
-sys.path.insert(0, str(ROOT / "tasks/arm/robosuite_timed_square_nut_assembly/verify"))
-sys.path.insert(0, str(ROOT / "tasks/arm/robosuite_timed_square_nut_assembly/oracle"))
+sys.path.insert(0, str(ROOT / "tasks/arm/robosuite_square_nut_assembly/verify"))
 from square_nut_env import SquareNutEpisode  # noqa: E402
-from controller import Policy  # noqa: E402
+from nut_fast_insert_controller import Policy  # noqa: E402
 
 
 def make_frame(obs, t, success):
@@ -34,7 +33,7 @@ def run(seed, label, outdir):
     obs = world.observe()
     frames.append(make_frame(obs, 0, False))
     try:
-        for t in range(world.env.horizon):
+        for t in range(170):
             obs, done = world.step(policy.step(t, obs))
             if world.t in (40, 80, 120):
                 frames.append(make_frame(obs, world.t, world.success))
