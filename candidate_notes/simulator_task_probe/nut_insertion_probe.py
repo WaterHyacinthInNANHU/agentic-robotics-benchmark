@@ -55,11 +55,13 @@ def run(seed, target_nut_z):
                 action = ctl.command(obs, [eef[0], eef[1], 1.12], -1., ctl.desired_ori, speed=.5)
             obs, _ = world.step(action)
             native = bool(world.env._check_success())
-            if seed == 11 and t >= 120 and t % 10 == 0:
+            if seed == 11 and t in (140, 180, 190, 200, 240, 250):
                 now_nut, now_peg = obs["nut_pos"], obs["peg_pos"]
                 print("NUT_INSERT_TRACE", json.dumps({
                     "t": t, "phase": phase, "xy": distance(now_nut[:2], now_peg[:2]),
                     "z": now_nut[2], "yaw_error": yaw_error, "action": action,
+                    "nut_quat": obs["nut_quat"], "eef_quat": obs["eef_quat"],
+                    "handle_dz": obs["handle_pos"][2] - now_nut[2],
                     "native": native}), flush=True)
             ever_native |= native
             native_stable = native_stable + 1 if native else 0
@@ -76,7 +78,7 @@ def run(seed, target_nut_z):
 
 if __name__ == "__main__":
     for z in (0.83,):
-        rows = [run(seed, z) for seed in (11, 13)]
+        rows = [run(seed, z) for seed in (11,)]
         print("NUT_INSERT_RESULT", json.dumps({
             "target_nut_z": z, "successes": sum(r["success"] for r in rows),
             "ever_native": sum(r["ever_native"] for r in rows),
