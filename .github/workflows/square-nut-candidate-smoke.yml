@@ -1,0 +1,50 @@
+name: Square nut candidate smoke
+on:
+  push:
+    branches: [probe/simulator-task-feasibility]
+jobs:
+  policy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/robosuite_square_nut_assembly/image/requirements.txt
+      - name: Run actual MuJoCo reference candidate
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: |
+          python - <<'PY'
+          import json, sys
+          from pathlib import Path
+          sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/setup/payload")
+          from square_nut_env import SquareNutEpisode
+          sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/oracle")
+          from controller import action
+          results = []
+          for seed in (11, 22, 33):
+              world = SquareNutEpisode(seed, render=True)
+              snapshots = []
+              for t in range(200):
+                  obs = world.observe()
+                  if t in (0, 37, 64, 81, 105, 144, 164, 179, 199):
+                      snapshots.append({"t": t, "eef": obs["eef_pos"], "nut": obs["nut_pos"], "handle": obs["handle_pos"], "peg": obs["peg_pos"]})
+                  _, done = world.step(action(t, obs))
+                  if done:
+                      break
+              results.append({"seed":seed, "success":world.success,"steps":world.t,"snapshots":snapshots})
+              world.close()
+          print(json.dumps(results,indent=2))
+          Path("square_nut_policy_probe.json").write_text(json.dumps(results,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: square-nut-policy-probe
+          path: square_nut_policy_probe.json
