@@ -1,0 +1,35 @@
+name: Trial native square-nut insertion blind agents
+on:
+  push:
+    branches: [trial/robosuite-square-nut-assembly-v2-blind]
+permissions:
+  contents: read
+jobs:
+  blind:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    strategy:
+      fail-fast: false
+      matrix:
+        agent: ["01", "02"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Install native simulator dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev
+          python -m pip install -r tasks/arm/robosuite_square_nut_assembly/image/requirements.txt
+      - name: Stage frozen submission in ALE home
+        run: |
+          sudo mkdir -p /home/user/submission
+          sudo cp candidate_notes/simulator_task_probe/nut_insert_blind_${{ matrix.agent }}/* /home/user/submission/
+          sudo chown -R "$USER":"$USER" /home/user/submission
+      - name: Evaluate frozen agent on 40 fresh native scenes
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+        run: |
+          python candidate_notes/simulator_task_probe/evaluate_blind_nut_insert.py candidate_notes/simulator_task_probe/nut_insert_blind_${{ matrix.agent }} --episodes 40
