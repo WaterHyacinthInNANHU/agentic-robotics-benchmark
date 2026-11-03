@@ -30,7 +30,7 @@ class Policy:
         if self.carry:
             target = [eef[0] + peg[0] - nut[0],
                       eef[1] + peg[1] - nut[1], 1.15]
-            return move(eef, target, 1, limit=0.15)
+            return move(eef, target, 1, limit=0.35)
         attempt = min(t // 100, 2)
         local = t - attempt * 100
         rotate_sign = -1 if attempt == 0 else 1
