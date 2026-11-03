@@ -152,7 +152,7 @@ jobs:
           def clipped(delta):
               return np.clip(np.asarray(delta) / 0.05, -1, 1)
           for behind in (0.05, 0.08, 0.11):
-              for strike_steps in (6, 10, 14):
+              for strike_steps in (8, 10, 12, 14, 16, 18, 20):
                   successes = 0
                   errors = []
                   for seed in range(10):
