@@ -35,6 +35,7 @@ jobs:
               first = world.observe()
               if seed == 1000:
                   Path("fetch_push_observation.png").write_bytes(base64.b64decode(first["rgb_png_base64"]))
+                  print("IMAGE_B64=" + first["rgb_png_base64"], flush=True)
               for t in range(MAX_STEPS):
                   world.step(policy.act(world.observe()))
               rows.append({"seed":seed, **world.result()})
