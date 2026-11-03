@@ -1,7 +1,8 @@
 {
   "metric": "success_rate",
   "direction": "higher",
-  "value": null,
+  "value": 1.0,
   "full_at": 0.9,
-  "source": "bootstrap; remeasure after contact recovery"
+  "source": "GitHub Actions pinned ALE validate run 41573607796",
+  "reference_commit": "7d41d1637e49ee804916522a219ed6d5bf880826"
 }
