@@ -20,40 +20,13 @@ jobs:
       - name: Build ALE base image
         working-directory: vendor/ale
         run: images/build.sh container-ubuntu22
-      - name: Lint and bootstrap measured anchor
+      - name: Lint and validate committed anchor
         shell: bash
         run: |
           set -euo pipefail
-          TASK="../../tasks/arm/fetch_precision_retarget"
           cd vendor/ale
-          VIRTUAL_ENV= uv run ale lint "$TASK"
-          set +e
-          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate "$TASK" --runs-dir /tmp/ale-runs-null 2>&1 | tee /tmp/validate-null.log
-          set -e
-          cd ../..
-          GITHUB_SHA="$GITHUB_SHA" GITHUB_RUN_ID="$GITHUB_RUN_ID" python3 - <<'PY'
-          import glob, json, os
-          paths = sorted(glob.glob("/tmp/ale-runs-null/validate-*/fetch_precision_retarget-oracle-*/result.json"))
-          if not paths:
-              raise SystemExit("oracle result.json not found")
-          result = json.load(open(paths[-1]))
-          value = result["metrics"]["success_rate"]
-          if not isinstance(value, (int, float)) or value <= 0:
-              raise SystemExit(f"invalid measured success_rate: {value!r}")
-          path = "tasks/arm/fetch_precision_retarget/verify/anchor.json"
-          anchor = json.load(open(path))
-          anchor.update({
-              "value": value,
-              "source": f"GitHub Actions pinned ALE validate run {os.environ['GITHUB_RUN_ID']}",
-              "reference_commit": os.environ["GITHUB_SHA"],
-          })
-          with open(path, "w") as handle:
-              json.dump(anchor, handle, indent=2)
-              handle.write("\n")
-          print(json.dumps(anchor, indent=2))
-          PY
-          cd vendor/ale
-          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate "$TASK" --runs-dir /tmp/ale-runs-anchored 2>&1 | tee /tmp/validate-anchored.log
+          VIRTUAL_ENV= uv run ale lint ../../tasks/arm/fetch_precision_retarget
+          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/fetch_precision_retarget --runs-dir /tmp/ale-runs-anchored 2>&1 | tee /tmp/validate-anchored.log
       - name: Domain lint
         run: |
           uv sync
@@ -64,8 +37,6 @@ jobs:
         with:
           name: fetch-precision-retarget-validation
           path: |
-            /tmp/validate-null.log
             /tmp/validate-anchored.log
-            /tmp/ale-runs-null
             /tmp/ale-runs-anchored
             tasks/arm/fetch_precision_retarget/verify/anchor.json
