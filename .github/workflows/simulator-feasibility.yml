@@ -140,6 +140,55 @@ jobs:
           Path("fetch_slide_probe.json").write_text(json.dumps(result, indent=2))
           env.close()
           PY
+      - name: Probe FetchSlide timed strike baseline
+        env:
+          MUJOCO_GL: osmesa
+        run: |
+          python - <<'PY'
+          import gymnasium as gym
+          import gymnasium_robotics
+          import numpy as np
+          gym.register_envs(gymnasium_robotics)
+          def clipped(delta):
+              return np.clip(np.asarray(delta) / 0.05, -1, 1)
+          for behind in (0.05, 0.08, 0.11):
+              for strike_steps in (6, 10, 14):
+                  successes = 0
+                  errors = []
+                  for seed in range(10):
+                      env = gym.make("FetchSlide-v4", max_episode_steps=50)
+                      obs, _ = env.reset(seed=seed + 100)
+                      phase = 0
+                      strikes = 0
+                      for t in range(50):
+                          gripper = obs["observation"][:3]
+                          puck = obs["achieved_goal"]
+                          goal = obs["desired_goal"]
+                          direction = goal[:2] - puck[:2]
+                          direction /= max(np.linalg.norm(direction), 1e-9)
+                          target = puck.copy()
+                          target[:2] -= behind * direction
+                          if phase == 0:
+                              target[2] += 0.11
+                              if np.linalg.norm(gripper-target) < 0.018: phase = 1
+                          elif phase == 1:
+                              target[2] = puck[2] + 0.005
+                              if np.linalg.norm(gripper-target) < 0.015: phase = 2
+                          elif phase == 2:
+                              target[:2] = gripper[:2] + direction * 0.05
+                              target[2] = puck[2] + 0.005
+                              strikes += 1
+                              if strikes >= strike_steps: phase = 3
+                          else:
+                              target = gripper.copy()
+                              target[2] += 0.05
+                          act = np.r_[clipped(target-gripper), 0.0]
+                          obs, rew, term, trunc, info = env.step(act)
+                      errors.append(float(np.linalg.norm(obs["achieved_goal"]-obs["desired_goal"])))
+                      successes += errors[-1] < 0.05
+                      env.close()
+                  print("STRIKE", behind, strike_steps, successes, "mean_error", np.mean(errors), flush=True)
+          PY
       - uses: actions/upload-artifact@v4
         with:
           name: fetch-slide-probe
