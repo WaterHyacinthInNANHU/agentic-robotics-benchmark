@@ -39,7 +39,7 @@ class Policy:
         if self.carry:
             target = [eef[0] + peg[0] - nut[0],
                       eef[1] + peg[1] - nut[1], 1.15]
-            return move(eef, target, 1, limit=0.35)
+            return move(eef, target, 1, limit=0.15)
         attempt = min(t // 100, 2)
         local = t - attempt * 100
         rotate_sign = -1 if attempt == 0 else 1
@@ -74,7 +74,7 @@ def run(seed):
 
 if __name__ == "__main__":
     rows = []
-    for seed in range(140, 180):
+    for seed in range(180, 220):
         row = run(seed)
         rows.append(row)
         print("NUT_CARRY_SCENE", json.dumps(row, sort_keys=True), flush=True)
