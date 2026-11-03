@@ -1,0 +1,146 @@
+name: Simulator feasibility probe
+
+on:
+  push:
+    branches: [probe/simulator-task-feasibility]
+
+jobs:
+  robosuite:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install CPU renderer and robosuite
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install robosuite==1.5.2 pillow psutil
+      - name: Probe NutAssemblySquare physics and offscreen rendering
+        env:
+          MUJOCO_GL: osmesa
+        run: |
+          python - <<'PY'
+          import json, os, resource, time
+          from pathlib import Path
+          import numpy as np
+          from PIL import Image
+          import robosuite as suite
+
+          t0 = time.perf_counter()
+          env = suite.make(
+              env_name="NutAssemblySquare",
+              robots="Panda",
+              has_renderer=False,
+              has_offscreen_renderer=True,
+              use_camera_obs=True,
+              camera_names=["agentview", "robot0_eye_in_hand"],
+              camera_heights=256,
+              camera_widths=256,
+              camera_depths=True,
+              reward_shaping=False,
+              control_freq=20,
+              horizon=200,
+          )
+          obs = env.reset()
+          reset_s = time.perf_counter() - t0
+          frames = []
+          step_t0 = time.perf_counter()
+          low, high = env.action_spec
+          rng = np.random.default_rng(7)
+          for i in range(200):
+              action = rng.uniform(low, high) * 0.08
+              obs, reward, done, info = env.step(action)
+              if i in (0, 99, 199):
+                  frames.append(obs["agentview_image"][::-1].copy())
+          step_s = time.perf_counter() - step_t0
+          Image.fromarray(np.concatenate(frames, axis=1)).save("robosuite_probe.png")
+          result = {
+              "simulator": "robosuite",
+              "version": suite.__version__,
+              "environment": "NutAssemblySquare",
+              "action_dim": int(low.size),
+              "observation_keys": list(obs.keys()),
+              "reset_seconds": reset_s,
+              "steps": 200,
+              "step_seconds": step_s,
+              "steps_per_second": 200 / step_s,
+              "max_rss_mb": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
+              "render_shape": list(frames[0].shape),
+              "image_bytes": Path("robosuite_probe.png").stat().st_size,
+          }
+          print(json.dumps(result, indent=2))
+          Path("robosuite_probe.json").write_text(json.dumps(result, indent=2))
+          env.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: robosuite-probe
+          path: robosuite_probe.*
+
+  fetch-slide:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+      - name: Install CPU renderer and Gymnasium Robotics
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libosmesa6-dev ffmpeg
+          python -m pip install --upgrade pip
+          python -m pip install gymnasium-robotics==1.4.2 pillow psutil
+      - name: Probe FetchSlide physics and offscreen rendering
+        env:
+          MUJOCO_GL: osmesa
+        run: |
+          python - <<'PY'
+          import json, resource, time
+          from pathlib import Path
+          import gymnasium as gym
+          import gymnasium_robotics
+          import numpy as np
+          from PIL import Image
+
+          t0 = time.perf_counter()
+          env = gym.make("FetchSlide-v4", render_mode="rgb_array", max_episode_steps=50)
+          obs, info = env.reset(seed=7)
+          reset_s = time.perf_counter() - t0
+          frames = [env.render()]
+          step_t0 = time.perf_counter()
+          rng = np.random.default_rng(7)
+          for i in range(50):
+              obs, reward, terminated, truncated, info = env.step(rng.uniform(-0.1, 0.1, env.action_space.shape))
+              if i in (24, 49):
+                  frames.append(env.render())
+          step_s = time.perf_counter() - step_t0
+          Image.fromarray(np.concatenate(frames, axis=1)).save("fetch_slide_probe.png")
+          result = {
+              "simulator": "Gymnasium Robotics",
+              "version": gymnasium_robotics.__version__,
+              "environment": "FetchSlide-v4",
+              "action_dim": int(env.action_space.shape[0]),
+              "observation_shapes": {k: list(v.shape) for k, v in obs.items()},
+              "reset_seconds": reset_s,
+              "steps": 50,
+              "step_seconds": step_s,
+              "steps_per_second": 50 / step_s,
+              "max_rss_mb": resource.getrusage(resource.RUSAGE_SELF).ru_maxrss / 1024,
+              "render_shape": list(frames[0].shape),
+              "image_bytes": Path("fetch_slide_probe.png").stat().st_size,
+          }
+          print(json.dumps(result, indent=2))
+          Path("fetch_slide_probe.json").write_text(json.dumps(result, indent=2))
+          env.close()
+          PY
+      - uses: actions/upload-artifact@v4
+        with:
+          name: fetch-slide-probe
+          path: fetch_slide_probe.*
