@@ -1,7 +1,8 @@
 {
   "metric": "success_rate",
   "direction": "higher",
-  "value": null,
+  "value": 0.95,
   "full_at": 0.85,
-  "source": "bootstrap; measure two-stage reference with pinned ALE validate"
+  "source": "GitHub Actions pinned ALE validate run 41586454341",
+  "reference_commit": "3965e6ca586d58c448d43abae256c59824b7527d"
 }
