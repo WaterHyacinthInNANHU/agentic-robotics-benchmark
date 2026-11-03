@@ -19,7 +19,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libosmesa6-dev ffmpeg
           python -m pip install --upgrade pip
-          python -m pip install robosuite==1.5.2 pillow psutil
+          python -m pip install mujoco==3.3.7 robosuite==1.5.2 pillow psutil
       - name: Probe NutAssemblySquare physics and offscreen rendering
         env:
           MUJOCO_GL: osmesa
@@ -96,7 +96,7 @@ jobs:
           sudo apt-get update
           sudo apt-get install -y libosmesa6-dev ffmpeg
           python -m pip install --upgrade pip
-          python -m pip install gymnasium-robotics==1.4.2 pillow psutil
+          python -m pip install mujoco==3.3.7 gymnasium-robotics==1.4.2 pillow psutil
       - name: Probe FetchSlide physics and offscreen rendering
         env:
           MUJOCO_GL: osmesa
