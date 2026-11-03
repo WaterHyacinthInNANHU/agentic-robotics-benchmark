@@ -1,0 +1,7 @@
+{
+  "metric": "success_rate",
+  "direction": "higher",
+  "value": null,
+  "full_at": 0.85,
+  "source": "bootstrap; measure two-stage reference with pinned ALE validate"
+}
