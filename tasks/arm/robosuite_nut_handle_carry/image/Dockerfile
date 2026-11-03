@@ -6,6 +6,7 @@ ENV VIRTUAL_ENV=/opt/venv
 ENV PATH=/opt/venv/bin:$PATH
 ENV MUJOCO_GL=osmesa
 ENV PYOPENGL_PLATFORM=osmesa
+ENV CC=gcc CXX=g++
 COPY requirements.txt /tmp/requirements.txt
 RUN apt-get update && apt-get install -y --no-install-recommends \
     build-essential linux-libc-dev libosmesa6 libgl1 libglfw3 \
