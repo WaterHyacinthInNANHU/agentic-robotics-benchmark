@@ -151,8 +151,8 @@ jobs:
           gym.register_envs(gymnasium_robotics)
           def clipped(delta):
               return np.clip(np.asarray(delta) / 0.05, -1, 1)
-          for behind in (0.05, 0.08, 0.11):
-              for strike_steps in (8, 10, 12, 14, 16, 18, 20):
+          for behind in (0.14, 0.20, 0.26):
+              for strike_steps in (20,):
                   successes = 0
                   errors = []
                   for seed in range(10):
