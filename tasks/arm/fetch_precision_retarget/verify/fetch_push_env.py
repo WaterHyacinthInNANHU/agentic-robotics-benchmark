@@ -9,7 +9,7 @@ from PIL import Image
 
 gym.register_envs(gymnasium_robotics)
 
-STEPS_PER_GOAL = 160
+STEPS_PER_GOAL = 200
 MAX_STEPS = 2 * STEPS_PER_GOAL
 PRECISION_METRES = 0.003
 
