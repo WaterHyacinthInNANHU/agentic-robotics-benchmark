@@ -1,0 +1,44 @@
+name: Measure 1.5 mm Fetch reference
+on:
+  push:
+    branches: [experiment/fetch-retarget-1p5mm]
+permissions:
+  contents: read
+jobs:
+  measure:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          submodules: recursive
+      - uses: astral-sh/setup-uv@v6
+      - name: Build ALE base image
+        working-directory: vendor/ale
+        run: images/build.sh container-ubuntu22
+      - name: Lint and measure null-anchor reference
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd vendor/ale
+          VIRTUAL_ENV= uv run ale lint ../../tasks/arm/fetch_precision_retarget
+          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/fetch_precision_retarget --runs-dir /tmp/ale-runs-1p5 2>&1 | tee /tmp/validate-1p5.log
+      - name: Print raw 1.5 mm reference metrics
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          paths = sorted(Path('/tmp/ale-runs-1p5').rglob('result.json'))
+          if not paths:
+              raise SystemExit('No ALE result.json found')
+          for path in paths:
+              data = json.loads(path.read_text())
+              print('RAW_ALE_RESULT', path, json.dumps(data.get('metrics', data), sort_keys=True)[:5000], flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fetch-retarget-1p5-anchor-measurement
+          path: |
+            /tmp/validate-1p5.log
+            /tmp/ale-runs-1p5
