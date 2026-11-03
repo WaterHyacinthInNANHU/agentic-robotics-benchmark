@@ -22,26 +22,32 @@ jobs:
         run: |
           python - <<'PY'
           import json, sys
-          from pathlib import Path
           sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/setup/payload")
           from square_nut_env import SquareNutEpisode
           sys.path.insert(0, "tasks/arm/robosuite_square_nut_assembly/oracle")
           from controller import action
           results = []
-          for seed in (11, 22, 33):
-              world = SquareNutEpisode(seed, render=True)
-              snapshots = []
-              for t in range(200):
+          for height in (-0.005, 0.005, 0.015, 0.025, 0.035, 0.045):
+              world = SquareNutEpisode(11, render=False)
+              start_nut = world.raw["SquareNut_pos"].copy()
+              snap = {}
+              for t in range(106):
                   obs = world.observe()
-                  if t in (0, 37, 64, 81, 105, 144, 164, 179, 199):
-                      snapshots.append({"t": t, "eef": obs["eef_pos"], "nut": obs["nut_pos"], "handle": obs["handle_pos"], "peg": obs["peg_pos"], "gripper": obs["gripper_qpos"], "grasp": bool(world.env._check_grasp(gripper=world.env.robots[0].gripper, object_geoms=world.env.nuts[0].contact_geoms))})
-                  _, done = world.step(action(t, obs))
-                  if done:
-                      break
-              results.append({"seed":seed, "success":world.success,"steps":world.t,"snapshots":snapshots})
+                  a = action(t, obs)
+                  if 38 <= t < 65:
+                      a[2] = max(-1.0, min(1.0, 9 * (obs["handle_pos"][2] + height - obs["eef_pos"][2])))
+                  if t in (64, 81, 105):
+                      snap[t] = {
+                          "eef": obs["eef_pos"],
+                          "handle": obs["handle_pos"],
+                          "gripper": obs["gripper_qpos"],
+                          "grasp": bool(world.env._check_grasp(gripper=world.env.robots[0].gripper, object_geoms=world.env.nuts[0].contact_geoms)),
+                          "nut_lift": float(world.raw["SquareNut_pos"][2] - start_nut[2])
+                      }
+                  world.step(a)
+              results.append({"height":height,"snap":snap})
               world.close()
-          print(json.dumps(results,indent=2))
-          Path("square_nut_policy_probe.json").write_text(json.dumps(results,indent=2))
+          print("GRASP_SWEEP=" + json.dumps(results))
           PY
       - uses: actions/upload-artifact@v4
         if: always()
