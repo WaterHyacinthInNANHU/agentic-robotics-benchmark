@@ -9,6 +9,7 @@ os.environ.setdefault("PYOPENGL_PLATFORM", "osmesa")
 import numpy as np
 import robosuite
 from PIL import Image
+from contact_overlay import contact_heatmap, render_contact_overlay
 
 OUT = Path(os.environ.get("PROBE_OUT", "/tmp/rapid-grasp-probe"))
 OUT.mkdir(parents=True, exist_ok=True)
@@ -21,6 +22,10 @@ def clip_action(raw, target, grip, gain=0.035, speed=1.0):
 
 
 def run(seed):
+    compact = os.environ.get("COMPACT", "0") == "1"
+    layout = dict(table_full_size=(0.30, 0.30, 0.82),
+                  bin1_pos=(0.1, -0.17, 0.8),
+                  bin2_pos=(0.1, 0.17, 0.8)) if compact else {}
     env = robosuite.make(
         env_name="PickPlaceCan",
         robots="Panda",
@@ -37,6 +42,7 @@ def run(seed):
         control_freq=20,
         horizon=160,
         hard_reset=False,
+        **layout,
     )
     raw = env.reset()
     if seed == 11:
@@ -108,10 +114,14 @@ def run(seed):
         if seed == 11 and t in (20, 40, 60, 80, 100):
             for camera in ("agentview", "robot0_eye_in_hand"):
                 Image.fromarray(raw[camera + "_image"][::-1]).save(OUT / f"{camera}_{t+1:03d}.png")
+            wrist = raw["robot0_eye_in_hand_image"][::-1]
+            heat, tactile_contacts = contact_heatmap(env)
+            render_contact_overlay(wrist, heat).save(OUT / f"wrist_tactile_{t+1:03d}.png")
+            print("TACTILE", t + 1, tactile_contacts, int(heat.max()), flush=True)
         if env._check_success():
             success_step = t + 1
             break
-    result = {"seed": seed, "success_step": success_step, "success_seconds": None if success_step is None else success_step / 20, "transitions": transition, "history": history}
+    result = {"seed": seed, "compact": compact, "success_step": success_step, "success_seconds": None if success_step is None else success_step / 20, "transitions": transition, "history": history}
     print("RESULT", json.dumps(result), flush=True)
     env.close()
     return result
