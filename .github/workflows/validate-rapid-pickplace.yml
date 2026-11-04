@@ -1,0 +1,53 @@
+name: Validate rapid multisensor pickplace
+on:
+  push:
+    branches: [task/rapid-pickplace-validation]
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: task/robosuite-rapid-multisensor-pickplace
+          path: submitted
+      - uses: actions/checkout@v4
+        with:
+          repository: Grounded-Intelligence-Initiative/agentic-robotics-benchmark
+          ref: main
+          submodules: recursive
+          path: benchmark
+      - name: Stage submitted task into current upstream
+        run: |
+          cp -a submitted/tasks/arm/robosuite_rapid_multisensor_pickplace benchmark/tasks/arm/
+      - uses: astral-sh/setup-uv@v6
+      - name: Build ALE base image
+        working-directory: benchmark/vendor/ale
+        run: images/build.sh container-ubuntu22-base ale-qemu-runner
+      - name: Lint and validate
+        shell: bash
+        run: |
+          set -euo pipefail
+          cd benchmark
+          uv run python scripts/lint_domain.py tasks/arm/robosuite_rapid_multisensor_pickplace
+          cd vendor/ale
+          VIRTUAL_ENV= uv run ale lint ../../tasks/arm/robosuite_rapid_multisensor_pickplace
+          VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/robosuite_rapid_multisensor_pickplace --runs-dir /tmp/ale-rapid-runs 2>&1 | tee /tmp/validate-rapid.log
+      - name: Print verifier metrics
+        if: always()
+        run: |
+          python3 - <<'PY'
+          import json
+          from pathlib import Path
+          for path in sorted(Path('/tmp/ale-rapid-runs').rglob('verification.json')):
+              print('VERIFICATION', path, json.dumps(json.loads(path.read_text()), sort_keys=True)[:5000], flush=True)
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapid-current-upstream-validation
+          path: |
+            /tmp/validate-rapid.log
+            /tmp/ale-rapid-runs
