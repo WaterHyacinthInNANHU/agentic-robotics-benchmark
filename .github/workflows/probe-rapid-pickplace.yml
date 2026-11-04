@@ -1,0 +1,30 @@
+name: Probe rapid PickPlaceCan expert timing
+on:
+  push:
+    branches: [probe/rapid-pickplace]
+permissions:
+  contents: read
+jobs:
+  probe:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 35
+    steps:
+      - uses: actions/checkout@v4
+      - uses: astral-sh/setup-uv@v6
+      - name: Install simulator
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends build-essential linux-libc-dev libosmesa6 libgl1 libglfw3
+          uv venv /tmp/probe-venv --python 3.12
+          uv pip install --python /tmp/probe-venv/bin/python numpy==1.26.4 mujoco==3.3.7 robosuite==1.5.2 Pillow==11.0.0
+      - name: Run expert timing probe
+        env:
+          MUJOCO_GL: osmesa
+          PYOPENGL_PLATFORM: osmesa
+          PROBE_OUT: /tmp/rapid-grasp-probe
+        run: /tmp/probe-venv/bin/python candidate_notes/rapid_grasp/probe_pickplace.py
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: rapid-pickplace-probe
+          path: /tmp/rapid-grasp-probe
