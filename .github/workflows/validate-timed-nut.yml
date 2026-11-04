@@ -1,4 +1,4 @@
-name: Validate timed square-nut assembly
+name: Validate timed square-nut assembly (current upstream)
 on:
   push:
     branches: [task/robosuite-timed-square-nut-assembly-validation]
@@ -11,35 +11,42 @@ jobs:
     steps:
       - uses: actions/checkout@v4
         with:
+          ref: task/robosuite-timed-square-nut-assembly
+          path: submitted
+      - uses: actions/checkout@v4
+        with:
+          repository: Grounded-Intelligence-Initiative/agentic-robotics-benchmark
+          ref: main
           submodules: recursive
+          path: benchmark
+      - name: Stage submitted task into current upstream
+        run: |
+          rm -rf benchmark/tasks/arm/robosuite_timed_square_nut_assembly
+          cp -a submitted/tasks/arm/robosuite_timed_square_nut_assembly benchmark/tasks/arm/
       - uses: astral-sh/setup-uv@v6
       - name: Build ALE base image
-        working-directory: vendor/ale
+        working-directory: benchmark/vendor/ale
         run: images/build.sh container-ubuntu22
-      - name: Lint and measure null-anchor reference
+      - name: Lint and validate
         shell: bash
         run: |
           set -euo pipefail
-          cd vendor/ale
+          cd benchmark/vendor/ale
           VIRTUAL_ENV= uv run ale lint ../../tasks/arm/robosuite_timed_square_nut_assembly
           VIRTUAL_ENV= DOCKER_HOST=unix:///var/run/docker.sock uv run ale validate ../../tasks/arm/robosuite_timed_square_nut_assembly --runs-dir /tmp/ale-timed-nut-runs 2>&1 | tee /tmp/validate-timed-nut.log
-      - name: Print raw reference metrics
+      - name: Print verifier metrics
         if: always()
         run: |
           python3 - <<'PY'
           import json
           from pathlib import Path
-          paths = sorted(Path('/tmp/ale-timed-nut-runs').rglob('result.json'))
-          if not paths:
-              raise SystemExit('No ALE result.json found')
-          for path in paths:
-              data = json.loads(path.read_text())
-              print('RAW_ALE_RESULT', path, json.dumps(data.get('metrics', data), sort_keys=True)[:5000], flush=True)
+          for path in sorted(Path('/tmp/ale-timed-nut-runs').rglob('verification.json')):
+              print('VERIFICATION', path, json.dumps(json.loads(path.read_text()), sort_keys=True)[:5000], flush=True)
           PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: timed-nut-anchor-measurement
+          name: timed-nut-current-upstream-validation
           path: |
             /tmp/validate-timed-nut.log
             /tmp/ale-timed-nut-runs
