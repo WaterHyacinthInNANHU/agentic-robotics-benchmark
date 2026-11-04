@@ -23,6 +23,7 @@ def clip_action(raw, target, grip, gain=0.035, speed=1.0):
 
 def run(seed):
     compact = os.environ.get("COMPACT", "0") == "1"
+    render = os.environ.get("NO_RENDER", "0") != "1"
     layout = dict(table_full_size=(0.30, 0.30, 0.82),
                   bin1_pos=(0.1, -0.17, 0.8),
                   bin2_pos=(0.1, 0.17, 0.8)) if compact else {}
@@ -31,8 +32,8 @@ def run(seed):
         robots="Panda",
         seed=seed,
         has_renderer=False,
-        has_offscreen_renderer=True,
-        use_camera_obs=True,
+        has_offscreen_renderer=render,
+        use_camera_obs=render,
         use_object_obs=True,
         camera_names=["agentview", "robot0_eye_in_hand"],
         camera_heights=[128, 128],
@@ -50,8 +51,9 @@ def run(seed):
         print("ACTION_SPEC", [x.tolist() for x in env.action_spec], flush=True)
         print("CAMERAS", [env.sim.model.camera_id2name(i) for i in range(env.sim.model.ncam)], flush=True)
         print("GEOMS", [env.sim.model.geom_id2name(i) for i in range(env.sim.model.ngeom) if "finger" in (env.sim.model.geom_id2name(i) or "").lower() or "pad" in (env.sim.model.geom_id2name(i) or "").lower()], flush=True)
-        for camera in ("agentview", "robot0_eye_in_hand"):
-            Image.fromarray(raw[camera + "_image"][::-1]).save(OUT / f"{camera}_reset.png")
+        if render:
+            for camera in ("agentview", "robot0_eye_in_hand"):
+                Image.fromarray(raw[camera + "_image"][::-1]).save(OUT / f"{camera}_reset.png")
     rest_z = float(env.sim.data.body_xpos[env.obj_body_id["Can"]][2])
     target_bin = np.array([
         env.bin2_pos[0] + env.bin_size[0] / 4,
@@ -111,7 +113,7 @@ def run(seed):
                 "eef": e.round(3).tolist(), "gripper": np.asarray(raw["robot0_gripper_qpos"]).round(3).tolist(),
                 "success": bool(env._check_success()), "contacts": int(env.sim.data.ncon),
             })
-        if seed == 11 and t in (20, 40, 60, 80, 100):
+        if seed == 11 and render and t in (20, 40, 60, 80, 100):
             for camera in ("agentview", "robot0_eye_in_hand"):
                 Image.fromarray(raw[camera + "_image"][::-1]).save(OUT / f"{camera}_{t+1:03d}.png")
             wrist = raw["robot0_eye_in_hand_image"][::-1]
@@ -128,6 +130,7 @@ def run(seed):
 
 
 if __name__ == "__main__":
-    results = [run(seed) for seed in (11, 22, 33)]
+    seeds = [int(x) for x in os.environ.get("SEEDS", "11,22,33").split(",")]
+    results = [run(seed) for seed in seeds]
     (OUT / "results.json").write_text(json.dumps(results, indent=2))
 

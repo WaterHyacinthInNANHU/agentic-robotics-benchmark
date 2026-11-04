@@ -6,7 +6,20 @@ not an optical-flow or learned pseudo-tactile signal.
 import numpy as np
 import mujoco
 from PIL import Image
-from robosuite.utils.camera_utils import get_camera_transform_matrix
+
+
+def _project_world_point(sim, world_point, height, width):
+    """Use the same pinhole convention as robosuite's camera_utils."""
+    cam_id = sim.model.camera_name2id("robot0_eye_in_hand")
+    origin = np.asarray(sim.data.cam_xpos[cam_id], dtype=float)
+    rotation = np.asarray(sim.data.cam_xmat[cam_id], dtype=float).reshape(3, 3)
+    camera_rotation = rotation @ np.diag([1.0, -1.0, -1.0])
+    local = camera_rotation.T @ (np.asarray(world_point, dtype=float) - origin)
+    if local[2] <= 1e-6:
+        return None
+    fovy = float(sim.model.cam_fovy[cam_id])
+    focal = 0.5 * height / np.tan(fovy * np.pi / 360)
+    return focal * local[0] / local[2] + width / 2, focal * local[1] / local[2] + height / 2
 
 
 def _pad_contact_names(env, contact):
@@ -19,7 +32,6 @@ def _pad_contact_names(env, contact):
 def contact_heatmap(env, height=128, width=128):
     """Return uint8 force heatmap and count of finger-pad contacts."""
     sim = env.sim
-    transform = get_camera_transform_matrix(sim, "robot0_eye_in_hand", height, width)
     heat = np.zeros((height, width), dtype=np.float32)
     yy, xx = np.mgrid[:height, :width]
     count = 0
@@ -33,10 +45,10 @@ def contact_heatmap(env, height=128, width=128):
         normal_newtons = max(0.0, float(force[0]))
         if normal_newtons <= 0:
             continue
-        point = transform @ np.r_[np.asarray(contact.pos), 1.0]
-        if point[2] <= 1e-6:
+        projected = _project_world_point(sim, contact.pos, height, width)
+        if projected is None:
             continue
-        x, y = point[0] / point[2], point[1] / point[2]
+        x, y = projected
         if not (-6 <= x < width + 6 and -6 <= y < height + 6):
             continue
         amplitude = min(255.0, 75.0 * np.log1p(normal_newtons))
