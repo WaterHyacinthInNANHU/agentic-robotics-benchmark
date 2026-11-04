@@ -26,7 +26,7 @@ jobs:
       - uses: astral-sh/setup-uv@v6
       - name: Build ALE base image
         working-directory: benchmark/vendor/ale
-        run: images/build.sh container-ubuntu22
+        run: images/build.sh container-ubuntu22-base
       - name: Lint and validate
         shell: bash
         run: |
